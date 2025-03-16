@@ -1,4 +1,4 @@
-import { createRoot } from "./lib/runtime";
+import { createRoot } from './lib/runtime';
 
 function App() {
   return (
@@ -6,7 +6,7 @@ function App() {
       <h1>Hello from Custom JSX!</h1>
       <button
         className="mt-4 px-3 py-2 bg-white text-blue-500 rounded"
-        onClick={() => alert("Button clicked!")}
+        onClick={() => alert('Button clicked!')}
       >
         Click me
       </button>
@@ -14,6 +14,6 @@ function App() {
   );
 }
 
-const root = createRoot(document.getElementById("app"));
+const root = createRoot(document.getElementById('app'));
 
 root.render(<App />);

@@ -1,5 +1,9 @@
 /** @jsx createElement */
-declare function createElement(tag: any, props: any, ...children: any[]): HTMLElement;
+declare function createElement(
+  tag: string,
+  props: any,
+  ...children: any[]
+): HTMLElement;
 declare const Fragment: any;
 
 // Define JSX namespace

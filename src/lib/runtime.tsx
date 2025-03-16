@@ -5,9 +5,13 @@
  * @param children - The children of the element.
  * @returns A new element.
  */
-export function createElement(tag: string | Function, props: Record<string, any>, ...children: any[]) {
+export function createElement(
+  tag: string | Function,
+  props: Record<string, any>,
+  ...children: any[]
+) {
   // If tag is a function, treat it as a component.
-  if (typeof tag === "function") {
+  if (typeof tag === 'function') {
     return tag({ ...props, children });
   }
   // Create a native element.
@@ -15,12 +19,12 @@ export function createElement(tag: string | Function, props: Record<string, any>
   // Set properties.
   if (props) {
     Object.entries(props).forEach(([key, value]) => {
-      if (key === "className") {
-        element.setAttribute("class", value);
-      } else if (key.startsWith("on") && typeof value === "function") {
+      if (key === 'className') {
+        element.setAttribute('class', value);
+      } else if (key.startsWith('on') && typeof value === 'function') {
         // Attach event listeners (e.g., onClick -> click)
         element.addEventListener(key.substring(2).toLowerCase(), value);
-      } else if (key === "style" && typeof value === "object") {
+      } else if (key === 'style' && typeof value === 'object') {
         Object.assign(element.style, value);
       } else {
         element.setAttribute(key, value);
@@ -29,7 +33,7 @@ export function createElement(tag: string | Function, props: Record<string, any>
   }
   // Append children.
   children.flat().forEach((child) => {
-    if (typeof child === "string") {
+    if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child));
     } else if (child instanceof Node) {
       element.appendChild(child);
@@ -46,10 +50,10 @@ export function createElement(tag: string | Function, props: Record<string, any>
 export function createRoot(element: HTMLElement | null) {
   function render(component: Node) {
     if (!element) {
-      throw new Error("Element not found");
+      throw new Error('Element not found');
     }
 
-    element.innerHTML = "";
+    element.innerHTML = '';
     element.appendChild(component);
   }
 

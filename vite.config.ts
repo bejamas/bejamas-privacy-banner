@@ -1,15 +1,33 @@
 import { defineConfig } from 'vite';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 import tailwindcss from '@tailwindcss/vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import inject from '@rollup/plugin-inject';
+import svgr from 'vite-plugin-svgr';
+
+// SVG plugin custom template
+const customTemplate = (variables, { tpl }) => {
+  return tpl`
+    import { createElement } from '@/lib/runtime';
+    const ${variables.componentName} = (props) => <svg {...props}>${variables.jsx}</svg>;
+    ${variables.exports}
+  `;
+};
 
 export default defineConfig({
   plugins: [
     viteSingleFile(),
+    tsconfigPaths(),
     tailwindcss(),
     // Inject the createElement function to implicitly use in all JSX files.
     inject({
-      createElement: ['./lib/runtime.tsx', 'createElement'],
+      createElement: ['@/lib/runtime.tsx', 'createElement'],
+      Fragment: ['@/lib/runtime.tsx', 'Fragment'],
+    }),
+    svgr({
+      svgrOptions: {
+        template: customTemplate,
+      },
     }),
   ],
   esbuild: {

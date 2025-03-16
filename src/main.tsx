@@ -1,10 +1,8 @@
-import { createRoot } from './lib/runtime';
-
-function App() {
-  return <div className="app">Bejamas Privacy Banner</div>;
-}
+import { createRoot } from '@/lib/runtime';
+import { CookieBanner } from '@/components/cookie-banner';
+import '@/styles/globals.css';
 
 // Initialize the app
 const root = createRoot(document.getElementById('app'));
 
-root.render(<App />);
+root.render(<CookieBanner />);

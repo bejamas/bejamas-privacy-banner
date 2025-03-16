@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-accent: var(--color-accent);
+}
+
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+
+  /* Accent colors: default lime */
+  --color-accent: #84cc16; 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #000;
+    --color-foreground: #fff;
+  }
+}

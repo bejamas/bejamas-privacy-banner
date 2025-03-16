@@ -1,9 +1,17 @@
 import { defineConfig } from 'vite';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 import tailwindcss from '@tailwindcss/vite';
+import inject from '@rollup/plugin-inject';
 
 export default defineConfig({
-  plugins: [viteSingleFile(), tailwindcss()],
+  plugins: [
+    viteSingleFile(),
+    tailwindcss(),
+    // Inject the createElement function to implicitly use in all JSX files.
+    inject({
+      createElement: ['./lib/runtime.tsx', 'createElement'],
+    }),
+  ],
   esbuild: {
     jsxFactory: 'createElement',
     jsxFragment: 'Fragment',

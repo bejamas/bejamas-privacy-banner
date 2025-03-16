@@ -23,7 +23,7 @@ export function Popup({ onClose, title, description, children }: PopupProps) {
       <div className="w-full h-full">
         <div
           className={cn(
-            'fixed bottom-3 left-3 p-4 max-w-xs w-full',
+            'fixed bottom-3 left-3 p-4 max-w-[300px] w-full',
             'bg-background text-foreground rounded-lg shadow-lg',
             'will-change-transform transition-discrete',
             'data-[open=false]:translate-y-full data-[open=true]:translate-y-0',

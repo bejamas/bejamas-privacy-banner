@@ -4,6 +4,8 @@
   --color-background: var(--color-background);
   --color-foreground: var(--color-foreground);
   --color-accent: var(--color-accent);
+  --color-accent-dark: var(--color-accent-dark);
+  --radius-component: var(--radius-component);
 }
 
 :root {
@@ -11,12 +13,46 @@
   --color-foreground: #000000;
 
   /* Accent colors: default lime */
-  --color-accent: #84cc16; 
+  --color-accent: #84cc16;
+  --color-accent-dark: #65a30d;
+
+  --radius-component: 0.25rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #000;
     --color-foreground: #fff;
+  }
+}
+
+@layer utilities {
+  .btn {
+    @apply rounded-component px-4 py-2 uppercase text-sm font-medium;
+    @apply transition-all duration-200 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-accent-dark border border-accent-dark text-white;
+
+    &:hover {
+      @apply bg-accent-dark/80 border-accent-dark/80;
+    }
+
+    &:active {
+      @apply scale-95 ring-4 ring-foreground/20;
+    }
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-accent-dark text-accent-dark;
+
+    &:hover {
+      @apply bg-foreground/20;
+    }
+
+    &:active {
+      @apply scale-95 ring-4 ring-foreground/20;
+    }
   }
 }

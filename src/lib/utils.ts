@@ -29,3 +29,28 @@ export function cn(
     )
     .join(' ');
 }
+
+/**
+ * Creates a variant function for defining component variants with Tailwind classes
+ * @param baseClasses - The base classes that are always applied
+ * @param variants - An object containing variant definitions
+ * @returns A function that generates class names based on selected variants
+ */
+export function createVariants(
+  baseClasses: string,
+  variants: Record<string, Record<string, string>>,
+) {
+  return function (options: Record<string, string> = {}) {
+    // Start with base classes
+    let classes = baseClasses;
+
+    // Add selected variant classes
+    Object.entries(options).forEach(([variantType, variantValue]) => {
+      if (variants[variantType] && variants[variantType][variantValue]) {
+        classes += ' ' + variants[variantType][variantValue];
+      }
+    });
+
+    return classes;
+  };
+}

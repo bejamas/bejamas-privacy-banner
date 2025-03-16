@@ -1,6 +1,10 @@
+import '@/styles/globals.css';
+
 import { cn } from '@/lib/utils';
 import { Popup } from '@/components/modules/popup';
 import { Checkbox } from '@/components/elements/checkbox';
+import { Button } from './elements/button';
+import { GearIcon } from './elements/icons/gear';
 
 const labels = {
   title: 'This website uses cookies',
@@ -90,6 +94,7 @@ export function CookieBanner() {
   return (
     <>
       <button
+        aria-label="Cookie settings"
         onClick={handleOpen}
         className={cn(
           'cb-control py-1 px-2 absolute bottom-3 left-3',
@@ -108,7 +113,7 @@ export function CookieBanner() {
         title={labels.title}
         description={labels.description}
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 mb-4">
           {cookies.map((cookie) => (
             <Checkbox
               id={cookie.id}
@@ -117,6 +122,45 @@ export function CookieBanner() {
               onChange={() => {}}
             />
           ))}
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-2">
+            <Button
+              aria-label="Accept all"
+              variant="primary"
+              className="flex-1"
+            >
+              Accept all
+            </Button>
+            <Button
+              aria-label="Decline all"
+              variant="secondary"
+              className="flex-1"
+            >
+              Decline all
+            </Button>
+          </div>
+
+          <div className="text-center">
+            <button
+              aria-label="Show details"
+              className={cn(
+                'py-2 px-1 font-medium',
+                'text-sm uppercase inline-flex items-center gap-1',
+                'text-foreground/80 cursor-pointer',
+                'group hover:text-foreground',
+                'transition-all duration-150',
+              )}
+            >
+              <GearIcon
+                className={cn(
+                  'w-4 h-4 group-hover:text-accent-dark transition-all duration-150',
+                )}
+              />
+              Show Details
+            </button>
+          </div>
         </div>
       </Popup>
     </>
